@@ -1,0 +1,22 @@
+# VLM-Guided Adaptive Negative Prompting for Creative Image Generation
+# Requirements for Stable Diffusion 3.5 with VLM guidance
+
+# Core dependencies
+torch>=2.0.0
+torchvision>=0.15.0
+diffusers>=0.31.0
+transformers>=4.44.0
+accelerate>=0.20.0
+safetensors>=0.3.1
+Pillow>=9.5.0
+
+# Optional but recommended for memory efficiency
+xformers>=0.0.20
+
+# VLM support
+qwen-vl-utils>=0.0.2
+
+# Utilities
+numpy>=1.24.0
+tqdm>=4.65.0
+
