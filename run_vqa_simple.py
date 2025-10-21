@@ -60,26 +60,30 @@ for exp in EXPS:
         
         # VQA-GUIDED GENERATION ONLY
         vqa_cmd = [
-            "python", "generate_sd35_image_nocorr.py",
+            "python", "gen_utils/generate_sd35_image.py",
             "--prompt", prompt,
-            "--seed", str(seed),
-            "--guidance_scale", str(gs),
             "--negative_prompt", neg,
+            "--output_dir", exp_dir,
+            "--seed", str(seed),
+            # "--steps", str(end_t - start_t), TODO fixed to 28 currently
+            "--guidance_scale", str(gs),
+            # "--height", "1024", TODO fixed to 1024 currently
+            # "--width", "1024", TODO fixed to 1024 currently
             "--topk", str(topk),
             "--freq", str(freq),
-            "--output_dir", exp_dir,
-            "--start_t", str(start_t),
-            "--end_t", str(end_t),
+            "--vqa_start_step", str(start_t),
+            "--vqa_stop_step", str(end_t),
         ]
-        if main_object is not None:
-            vqa_cmd += ["--main_object", str(main_object)]
+
+        for q in questions:
+            vqa_cmd += ["--question", q]
 
         # Only add oracle_id if it's not None
         if oracle_id is not None:
             vqa_cmd.extend(["--oracle_id", oracle_id])
 
-        for q in questions:
-            vqa_cmd += ["--question", q]
+        if main_object is not None:
+            vqa_cmd += ["--main_object", str(main_object)]
 
         # Log the command being executed
         log_print(f"    Command: {' '.join(vqa_cmd)}")

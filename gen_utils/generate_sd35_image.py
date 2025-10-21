@@ -229,6 +229,7 @@ def main():
         default=None,
         help="Optional object name to append to detected features for context"
     )
+    # TODO Following were not used in the script.
     parser.add_argument(
         "--clear_negatives_at_stop",
         action="store_true",
